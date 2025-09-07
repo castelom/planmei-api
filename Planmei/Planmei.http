@@ -1,0 +1,6 @@
+@Planmei_HostAddress = http://localhost:5187
+
+GET {{Planmei_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
