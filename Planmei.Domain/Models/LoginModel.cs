@@ -1,4 +1,4 @@
-﻿namespace Planmei.Data.Models
+﻿namespace Planmei.Domain.Models
 {
     public class LoginModel
     {
