@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Planmei.Domain.Interfaces.Data;
+using Planmei.Domain.Interfaces.Services;
+using Planmei.Web.Middlewares;
+using Planmei.Web.Services;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -53,6 +56,9 @@ builder.Services.AddCors(options =>
                         .AllowAnyMethod());
 });
 
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
+
 // Config Identity
 builder.Services.AddDbContext<IApplicationDbContext, ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -92,6 +98,9 @@ builder.Services.AddAuthorization(options =>
         policy.RequireClaim("verified_user", "true"));
 });
 
+// Config Middleware
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -104,6 +113,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseMiddleware<UserContextMiddleware>();
 app.UseCors("AllowFrontend");
 app.MapControllers();
 

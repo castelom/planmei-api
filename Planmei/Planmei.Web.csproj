@@ -22,8 +22,4 @@
     <ProjectReference Include="..\Planmei.Domain\Planmei.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
 </Project>
