@@ -4,7 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Planmei.Domain.Interfaces.Data;
+using Planmei.Domain.Interfaces.Repository;
 using Planmei.Domain.Interfaces.Services;
+using Planmei.Infrastructure.Repository;
 using Planmei.Web.Middlewares;
 using Planmei.Web.Services;
 using System.Text;
@@ -57,7 +59,11 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddHttpContextAccessor();
+
+// DI
 builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
+builder.Services.AddScoped<IFinancialTransactionService, FinancialTransactionService>();
+builder.Services.AddScoped<IFinancialTransactionRepository, FinancialTransactionRepository>();
 
 // Config Identity
 builder.Services.AddDbContext<IApplicationDbContext, ApplicationDbContext>(options =>
@@ -97,8 +103,6 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("VerifiedUser", policy =>
         policy.RequireClaim("verified_user", "true"));
 });
-
-// Config Middleware
 
 
 var app = builder.Build();
