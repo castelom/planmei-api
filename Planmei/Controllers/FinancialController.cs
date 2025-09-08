@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Planmei.Controllers;
 
 namespace Planmei.Web.Controllers
 {
@@ -9,9 +8,9 @@ namespace Planmei.Web.Controllers
     [Authorize(Policy = "VerifiedUser")]
     public class FinancialController : ControllerBase
     {
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<FinancialController> _logger;
 
-        public FinancialController(ILogger<WeatherForecastController> logger)
+        public FinancialController(ILogger<FinancialController> logger)
         {
             _logger = logger;
         }
