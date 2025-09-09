@@ -1,12 +1,15 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Planmei.Domain.Interfaces.Configs;
 using Planmei.Domain.Interfaces.Data;
 using Planmei.Domain.Interfaces.Repository;
 using Planmei.Domain.Interfaces.Services;
 using Planmei.Infrastructure.Repository;
+using Planmei.Web.Configs;
 using Planmei.Web.Middlewares;
 using Planmei.Web.Services;
 using System.Text;
@@ -59,11 +62,24 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddHttpContextAccessor();
+builder.Services.Configure<CaptchaConfig>(
+    builder.Configuration.GetSection("Captcha")
+);
 
 // DI
 builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 builder.Services.AddScoped<IFinancialTransactionService, FinancialTransactionService>();
 builder.Services.AddScoped<IFinancialTransactionRepository, FinancialTransactionRepository>();
+builder.Services.AddScoped<ICaptchaService, CaptchaService>();
+builder.Services.AddSingleton<ICaptchaConfig>(sp =>
+    sp.GetRequiredService<IOptions<CaptchaConfig>>().Value
+);
+
+builder.Services.AddHttpClient<ICaptchaService, CaptchaService>((sp, client) =>
+{
+    var captchaConfig = sp.GetRequiredService<ICaptchaConfig>();
+    client.BaseAddress = new Uri(captchaConfig.BaseUrl);
+});
 
 // Config Identity
 builder.Services.AddDbContext<IApplicationDbContext, ApplicationDbContext>(options =>
