@@ -1,8 +1,9 @@
-﻿namespace Planmei.Domain.Models
+﻿namespace Planmei.Domain.Models.Users
 {
-    public class LoginModel
+    public class RegisterModel
     {
         public string UserName { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
     }
 }
