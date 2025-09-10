@@ -10,11 +10,13 @@ namespace Planmei.Web.Controllers
     {
         private readonly ILogger<ContactController> _logger;
         private readonly ICaptchaService _captchaService;
+        private readonly IEmailService _emailService;
 
-        public ContactController(ILogger<ContactController> logger, ICaptchaService captchaService)
+        public ContactController(ILogger<ContactController> logger, ICaptchaService captchaService, IEmailService emailService)
         {
             _logger = logger;
             _captchaService = captchaService;
+            _emailService = emailService;
         }
 
         [HttpPost("sendMessage")]
@@ -28,6 +30,8 @@ namespace Planmei.Web.Controllers
                 {
                     return BadRequest("Captcha validation failed.");
                 }
+
+                await _emailService.SendEmailAsync(messageRequest.Subject, messageRequest.Message);
                 return Ok();
             }
             catch (Exception ex)

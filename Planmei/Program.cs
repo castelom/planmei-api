@@ -66,13 +66,23 @@ builder.Services.Configure<CaptchaConfig>(
     builder.Configuration.GetSection("Captcha")
 );
 
+builder.Services.Configure<MailboxConfig>(
+    builder.Configuration.GetSection("Mailbox")
+);
+
 // DI
 builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 builder.Services.AddScoped<IFinancialTransactionService, FinancialTransactionService>();
 builder.Services.AddScoped<IFinancialTransactionRepository, FinancialTransactionRepository>();
+builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<ICaptchaService, CaptchaService>();
+builder.Services.AddScoped<IMailboxConfig, MailboxConfig>();
+
 builder.Services.AddSingleton<ICaptchaConfig>(sp =>
     sp.GetRequiredService<IOptions<CaptchaConfig>>().Value
+);
+builder.Services.AddSingleton<IMailboxConfig>(sp =>
+    sp.GetRequiredService<IOptions<MailboxConfig>>().Value
 );
 
 builder.Services.AddHttpClient<ICaptchaService, CaptchaService>((sp, client) =>
