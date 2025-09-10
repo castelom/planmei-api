@@ -27,7 +27,7 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Planmei API", Version = "v1" });
 
-    // Configuração para JWT
+    // Config JWT
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Description = "'Bearer {token}'",
@@ -75,8 +75,6 @@ builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 builder.Services.AddScoped<IFinancialTransactionService, FinancialTransactionService>();
 builder.Services.AddScoped<IFinancialTransactionRepository, FinancialTransactionRepository>();
 builder.Services.AddScoped<IEmailService, EmailService>();
-builder.Services.AddScoped<ICaptchaService, CaptchaService>();
-builder.Services.AddScoped<IMailboxConfig, MailboxConfig>();
 
 builder.Services.AddSingleton<ICaptchaConfig>(sp =>
     sp.GetRequiredService<IOptions<CaptchaConfig>>().Value
