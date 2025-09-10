@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36414.22 d17.14
+VisualStudioVersion = 17.14.36414.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planmei.Web", "Planmei\Planmei.Web.csproj", "{C435AE44-202B-4343-BB02-D00DC5466DB8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planmei.Infrastructure", "Planmei.Data\Planmei.Infrastructure.csproj", "{EC5EBB2D-6A5A-4B3C-8064-96DB9837EAC9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planmei.Domain", "Planmei.Domain\Planmei.Domain.csproj", "{FD24F827-21BF-44A2-B5B6-7E2D455F3547}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planmei.Test", "Planmei.Test\Planmei.Test.csproj", "{50097343-5BD7-4CD0-9DBE-83D17C5042C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{FD24F827-21BF-44A2-B5B6-7E2D455F3547}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD24F827-21BF-44A2-B5B6-7E2D455F3547}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD24F827-21BF-44A2-B5B6-7E2D455F3547}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50097343-5BD7-4CD0-9DBE-83D17C5042C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50097343-5BD7-4CD0-9DBE-83D17C5042C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50097343-5BD7-4CD0-9DBE-83D17C5042C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50097343-5BD7-4CD0-9DBE-83D17C5042C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

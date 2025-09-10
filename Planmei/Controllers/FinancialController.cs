@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Planmei.Domain.Interfaces.Services;
-using Planmei.Domain.Models.Request;
 
 namespace Planmei.Web.Controllers
 {
